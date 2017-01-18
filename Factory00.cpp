@@ -1,6 +1,7 @@
 #include <iostream>
 
 using namespace std;
+
 class Product
 {
 public:
@@ -12,11 +13,11 @@ class Producto1 : public Product
 {
   void operacion1()
   {
-      cout << "Estoy en operacion 1 Prod 1";
+      cout << "Estoy en operacion 1 Prod 1" << endl;
   }
   void operacion2()
   {
-      cout << "Estoy en operacion 1 Prod 1";
+      cout << "Estoy en operacion 1 Prod 1" << endl;
   }
 };
 
@@ -24,11 +25,11 @@ class Producto2 : public Product
 {
    void operacion1()
   {
-      cout << "Estoy en operacion 1 Prod 2";
+      cout << "Estoy en operacion 1 Prod 2" << endl;
   }
   void operacion2()
   {
-      cout << "Estoy en operacion 2 Prod 2";
+      cout << "Estoy en operacion 2 Prod 2" << endl;
   }
 };
 
@@ -60,7 +61,7 @@ class ConcreteFactoryOO : public FactoryMethod
 int main()
 {
     //el creador no está encapsulado
-    Creator* cliente = new FactoryMethod();
+    FactoryMethod* cliente = new ConcreteFactoryOO();
 
     //la creación del producto sí está encapsulado
     Product* miProducto = cliente->createProduct(1);
