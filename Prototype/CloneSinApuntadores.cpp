@@ -15,7 +15,7 @@ class SubClass : public Base
 public:
     SubClass clone()
     {
-        return *this;
+        return * this;
     }
 };
 
