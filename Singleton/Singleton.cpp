@@ -44,6 +44,8 @@ int main()
   Singleton * r = Singleton::getSingleton();
   r->doStuff();
   r->getTime();
+  int x;
+  std::cin >> x;
   Singleton * r2 = Singleton::getSingleton();
   r2->doStuff();
   r2->getTime();
