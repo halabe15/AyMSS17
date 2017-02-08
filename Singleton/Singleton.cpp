@@ -16,6 +16,7 @@ public:
 
   void doStuff(){
     std::cout << instance << '\n';
+    getTime();
   }
 
   static Singleton * getSingleton(){

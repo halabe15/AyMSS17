@@ -31,4 +31,7 @@ int main()
 
     cout <<"a: " << *a->secondValue << endl;
     cout <<"b: " << *b.secondValue << endl;
+
+    cout <<"a: " << a->value << endl;
+    cout <<"b: " << b.value << endl;
 }
