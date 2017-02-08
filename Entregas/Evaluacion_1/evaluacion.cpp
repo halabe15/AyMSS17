@@ -162,7 +162,7 @@ public:
   }
 };
 
-class Almacen : public Videojuego{
+class Almacen : public Estrategia{
 private:
 
   Almacen(){
@@ -170,13 +170,23 @@ private:
   }
   static Almacen * instance;
 
-  // template <class T>
-  // std::vector<T> v;
+  std::vector<Estrategia> v;
+  std::vector<Estrategia> papelera;
 
 public:
 
-  void doStuff(){
-    // std::cout << instance << '\n';
+  void agrega(Estrategia e){
+    v.push_back(e);
+  }
+
+  void elimina(){
+    papelera.push_back(v.back());
+    v.pop_back();
+  }
+
+  void listar(){
+    for(int i=0;i< v.size();i++)
+      std::cout << i+1 << ": " << v.at(i).getNombre() << '\n';
   }
 
   static Almacen * getAlmacen(){
@@ -192,16 +202,19 @@ void menu(){
   int choice = 0;
   bool almacenCreado = false;
   Almacen *a;
+  Estrategia * e = SubClase::factoryMethod<Estrategia>();
+  Estrategia copia = e->clonar();
 
   do{
     std::cout << "\n\t\t/* Almacen */\n" << '\n';
     std::cout << "\t1. Crear inventario" << '\n';
     std::cout << "\t2. Agregar al inventario" << '\n';
-    std::cout << "\t3. Deshacer las ultimas 3 acciones" << '\n';
-    std::cout << "\t4. Listar videojuegos disponibles" << '\n';
-    std::cout << "\t5. Buscar Videojuegos" << '\n';
-    std::cout << "\t6. Total de inventario" << '\n';
-    std::cout << "\t7. Listar todos los elementos\n" << '\n';
+    std::cout << "\t3. Elimina del inventario" << '\n';
+    std::cout << "\t4. Deshacer las ultimas 3 acciones" << '\n';
+    std::cout << "\t5. Listar videojuegos disponibles" << '\n';
+    std::cout << "\t6. Buscar Videojuegos" << '\n';
+    std::cout << "\t7. Total de inventario" << '\n';
+    std::cout << "\t8. Listar todos los elementos\n" << '\n';
     std::cout << "\t0. Salir" << '\n';
 
     std::cout << "Tu opción: ";
@@ -225,26 +238,34 @@ void menu(){
 
       case 2:
         std::cout << "Agregar al inventario" << '\n';
+        copia.setNombre("Call Of Duty");
+        a->agrega(copia);
         break;
 
       case 3:
-        std::cout << "Deshacer las ultimas 3 acciones" << '\n';
+        std::cout << "Elimina del inventario" << '\n';
+        a->elimina();
         break;
 
       case 4:
-        std::cout << "Listar videojuegos disponibles" << '\n';
+        std::cout << "Deshacer las ultimas 3 acciones" << '\n';
         break;
 
       case 5:
-        std::cout << "Buscar Videojuegos" << '\n';
+        std::cout << "Listar videojuegos disponibles" << '\n';
         break;
 
       case 6:
-        std::cout << "Total de inventario" << '\n';
+        std::cout << "Buscar Videojuegos" << '\n';
         break;
 
       case 7:
+        std::cout << "Total de inventario" << '\n';
+        break;
+
+      case 8:
         std::cout << "Listar todos los elementos" << '\n';
+        a->listar();
         break;
 
       default:
