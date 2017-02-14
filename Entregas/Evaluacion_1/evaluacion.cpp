@@ -177,11 +177,30 @@ public:
 
   void agrega(Estrategia e){
     v.push_back(e);
+    std::cout << v.back().getNombre() << " agregado correctamente" << '\n';
   }
 
-  void elimina(){
-    papelera.push_back(v.back());
-    v.pop_back();
+  void elimina(int num){
+    if(papelera.size() > 3){
+      papelera.erase(papelera.begin());
+    }
+    papelera.push_back(v.at(num));
+    v.erase(v.begin() + num);
+    std::cout << papelera.back().getNombre() << " eliminado correctamente" << '\n';
+  }
+
+  void undo(){
+    for(int i = 0; i<papelera.size(); i++){
+      v.push_back(papelera.at(i));
+      std::cout << papelera.at(i).getNombre() << " agregado de nuevo" << '\n';
+    }
+
+    if(!papelera.empty())
+      papelera.clear();
+  }
+
+  void elementos(){
+    std::cout << "Total de Videojuegos en el alamcen: " << v.size() << '\n';
   }
 
   void listar(){
@@ -199,11 +218,42 @@ public:
 Almacen * Almacen::instance = 0;
 
 void menu(){
-  int choice = 0;
+  int choice = 0, num;
   bool almacenCreado = false;
+
+
+  // Declaramos el almacen pero no lo creamos
   Almacen *a;
+  // Creamos una clase de estrategia para clonar de aqui
   Estrategia * e = SubClase::factoryMethod<Estrategia>();
-  Estrategia copia = e->clonar();
+
+  // Creamos vector para os videojuegos fuera del alamcen
+  std::vector<Estrategia> v;
+
+  // Creamos Videojuegos Clones como ejemplo para que se ingresen al inventario
+  Estrategia copia0 = e->clonar();
+  Estrategia copia1 = e->clonar();
+  Estrategia copia2 = e->clonar();
+  Estrategia copia3 = e->clonar();
+  Estrategia copia4 = e->clonar();
+  Estrategia copia5 = e->clonar();
+
+  // Les damos propiedades a las copias
+  copia0.setNombre("Call Of Duty");
+  copia1.setNombre("Gear of Wars");
+  copia2.setNombre("Minecraft");
+  copia3.setNombre("Super Mario");
+  copia4.setNombre("Crazy Taxi");
+  copia5.setNombre("FIFA");
+
+  // Los metemos al vector
+  v.push_back(copia0);
+  v.push_back(copia1);
+  v.push_back(copia2);
+  v.push_back(copia3);
+  v.push_back(copia4);
+  v.push_back(copia5);
+
 
   do{
     std::cout << "\n\t\t/* Almacen */\n" << '\n';
@@ -211,10 +261,12 @@ void menu(){
     std::cout << "\t2. Agregar al inventario" << '\n';
     std::cout << "\t3. Elimina del inventario" << '\n';
     std::cout << "\t4. Deshacer las ultimas 3 acciones" << '\n';
-    std::cout << "\t5. Listar videojuegos disponibles" << '\n';
-    std::cout << "\t6. Buscar Videojuegos" << '\n';
-    std::cout << "\t7. Total de inventario" << '\n';
-    std::cout << "\t8. Listar todos los elementos\n" << '\n';
+    std::cout << "\t5. Listar videojuegos disponibles por precio de mayor a menor" << '\n';
+    std::cout << "\t6. Listar videojuegos disponibles por precio de menor a mayor" << '\n';
+    std::cout << "\t7. Buscar Videojuegos" << '\n';
+    std::cout << "\t8. Total de inventario" << '\n';
+    std::cout << "\t9. Listar todos los elementos del almacen" << '\n';
+    std::cout << "\t10. Listar todos los elementos fuera del alamcen\n" << '\n';
     std::cout << "\t0. Salir" << '\n';
 
     std::cout << "Tu opción: ";
@@ -227,7 +279,7 @@ void menu(){
 
     switch (choice) {
       case 0:
-        std::cout << "Adios!" << '\n';
+        std::cout << "1º Evaluacion - Isaac Halabe - A01021800" << '\n';
         break;
 
       case 1:
@@ -237,35 +289,56 @@ void menu(){
         break;
 
       case 2:
-        std::cout << "Agregar al inventario" << '\n';
-        copia.setNombre("Call Of Duty");
-        a->agrega(copia);
+        std::cout << "Agregar al inventario\n" << '\n';
+        std::cout << "¿Cual es el numero del videojuego que deseas agregar?" << '\n';
+        for(int i=0;i<v.size();i++)
+          std::cout << i+1 << ": " << v.at(i).getNombre()<< '\n';
+        std::cin >> num;
+        a->agrega(v.at(num-1));
+        v.erase(v.begin() + num-1);
         break;
 
       case 3:
         std::cout << "Elimina del inventario" << '\n';
-        a->elimina();
+        std::cout << "¿Cual es el numero del videojuego que deseas eliminar?" << '\n';
+        a->listar();
+        std::cin >> num;
+        a->elimina(num-1);
         break;
 
       case 4:
-        std::cout << "Deshacer las ultimas 3 acciones" << '\n';
+        std::cout << "Agregar de nuevo los ultimos 3 videojuegos borrados" << '\n';
+        a->undo();
         break;
 
       case 5:
-        std::cout << "Listar videojuegos disponibles" << '\n';
+        std::cout << "Listar videojuegos disponibles por precio de mayor a menor" << '\n';
+        a->listar();
         break;
 
       case 6:
-        std::cout << "Buscar Videojuegos" << '\n';
+        std::cout << "Listar videojuegos disponibles por precio de menor a mayor" << '\n';
+        a->listar();
         break;
 
       case 7:
-        std::cout << "Total de inventario" << '\n';
+        std::cout << "Buscar Videojuegos" << '\n';
         break;
 
       case 8:
-        std::cout << "Listar todos los elementos" << '\n';
+        std::cout << "Total de inventario" << '\n';
+        a->elementos();
+        break;
+
+      case 9:
+        std::cout << "Listar todos los elementos del Alamcen" << '\n';
         a->listar();
+        break;
+
+      case 10:
+        std::cout << "Listar todos los elementos fuera del almacen" << '\n';
+        for(int i=0;i<v.size();i++)
+          std::cout << i+1 << ": " << v.at(i).getNombre()<< '\n';
         break;
 
       default:
