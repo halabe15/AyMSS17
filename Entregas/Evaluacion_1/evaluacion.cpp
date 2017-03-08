@@ -70,7 +70,7 @@ public:
   virtual void produccion() = 0;
   virtual void pruebasDeAceptacion() = 0;
 
-  // Fcatory Method
+  // Factory Method
   template <class T>
   static T* factoryMethod(){
     T* t = new T;

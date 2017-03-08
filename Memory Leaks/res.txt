@@ -1,0 +1,128 @@
+==22093== Memcheck, a memory error detector
+==22093== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==22093== Using Valgrind-3.10.0.SVN and LibVEX; rerun with -h for copyright info
+==22093== Command: ./a.out aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+==22093== 
+--22093-- Valgrind options:
+--22093--    --leak-check=yes
+--22093--    -v
+--22093-- Contents of /proc/version:
+--22093--   Linux version 4.8.2-c9 (root@383850eeb47b) (gcc version 4.9.2 (Debian 4.9.2-10) ) #1 SMP Thu Oct 20 04:08:21 UTC 2016
+--22093-- Arch and hwcaps: AMD64, amd64-cx16-rdtscp-sse3-avx
+--22093-- Page sizes: currently 4096, max supported 4096
+--22093-- Valgrind library directory: /usr/lib/valgrind
+--22093-- Reading syms from /home/ubuntu/workspace/programming/C++/Memory Leaks/a.out
+--22093-- Reading syms from /lib/x86_64-linux-gnu/ld-2.19.so
+--22093--   Considering /lib/x86_64-linux-gnu/ld-2.19.so ..
+--22093--   .. CRC mismatch (computed 4cbae35e wanted 8d683c31)
+--22093--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.19.so ..
+--22093--   .. CRC is valid
+--22093-- Reading syms from /usr/lib/valgrind/memcheck-amd64-linux
+--22093--   Considering /usr/lib/valgrind/memcheck-amd64-linux ..
+--22093--   .. CRC mismatch (computed 37cdde19 wanted adc367dd)
+--22093--    object doesn't have a symbol table
+--22093--    object doesn't have a dynamic symbol table
+--22093-- Scheduler: using generic scheduler lock implementation.
+--22093-- Reading suppressions file: /usr/lib/valgrind/default.supp
+==22093== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-22093-by-ubuntu-on-???
+==22093== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-22093-by-ubuntu-on-???
+==22093== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-22093-by-ubuntu-on-???
+==22093== 
+==22093== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==22093== don't want to do, unless you know exactly what you're doing,
+==22093== or are doing some strange experiment):
+==22093==   /usr/lib/valgrind/../../bin/vgdb --pid=22093 ...command...
+==22093== 
+==22093== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==22093==   /path/to/gdb ./a.out
+==22093== and then give GDB the following command
+==22093==   target remote | /usr/lib/valgrind/../../bin/vgdb --pid=22093
+==22093== --pid is optional if only one valgrind process is running
+==22093== 
+--22093-- REDIR: 0x4019ca0 (strlen) redirected to 0x38068331 (???)
+--22093-- Reading syms from /usr/lib/valgrind/vgpreload_core-amd64-linux.so
+--22093--   Considering /usr/lib/valgrind/vgpreload_core-amd64-linux.so ..
+--22093--   .. CRC mismatch (computed 329d6860 wanted c0186920)
+--22093--    object doesn't have a symbol table
+--22093-- Reading syms from /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so
+--22093--   Considering /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so ..
+--22093--   .. CRC mismatch (computed 1fb85af8 wanted 2e9e3c16)
+--22093--    object doesn't have a symbol table
+==22093== WARNING: new redirection conflicts with existing -- ignoring it
+--22093--     old: 0x04019ca0 (strlen              ) R-> (0000.0) 0x38068331 ???
+--22093--     new: 0x04019ca0 (strlen              ) R-> (2007.0) 0x04c2e1a0 strlen
+--22093-- REDIR: 0x4019a50 (index) redirected to 0x4c2dd50 (index)
+--22093-- REDIR: 0x4019c70 (strcmp) redirected to 0x4c2f2f0 (strcmp)
+--22093-- REDIR: 0x401a9c0 (mempcpy) redirected to 0x4c31da0 (mempcpy)
+--22093-- Reading syms from /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19
+--22093--   Considering /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19 ..
+--22093--   .. CRC mismatch (computed a220b90a wanted 886349ba)
+--22093--    object doesn't have a symbol table
+--22093-- Reading syms from /lib/x86_64-linux-gnu/libc-2.19.so
+--22093--   Considering /lib/x86_64-linux-gnu/libc-2.19.so ..
+--22093--   .. CRC mismatch (computed dc620abc wanted 148cbd6e)
+--22093--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libc-2.19.so ..
+--22093--   .. CRC is valid
+--22093-- Reading syms from /lib/x86_64-linux-gnu/libm-2.19.so
+--22093--   Considering /lib/x86_64-linux-gnu/libm-2.19.so ..
+--22093--   .. CRC mismatch (computed a46ef660 wanted 767bfa33)
+--22093--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libm-2.19.so ..
+--22093--   .. CRC is valid
+--22093-- Reading syms from /lib/x86_64-linux-gnu/libgcc_s.so.1
+--22093--   Considering /lib/x86_64-linux-gnu/libgcc_s.so.1 ..
+--22093--   .. CRC mismatch (computed ea519b66 wanted 0c00ddb3)
+--22093--    object doesn't have a symbol table
+--22093-- REDIR: 0x51c7d60 (strcasecmp) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
+--22093-- REDIR: 0x51ca050 (strncasecmp) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
+--22093-- REDIR: 0x51c7530 (memcpy@GLIBC_2.2.5) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
+--22093-- REDIR: 0x51c57c0 (rindex) redirected to 0x4c2da30 (rindex)
+--22093-- REDIR: 0x51c3ac0 (strlen) redirected to 0x4c2e0e0 (strlen)
+--22093-- REDIR: 0x51c6fa0 (__GI_memcmp) redirected to 0x4c30b80 (__GI_memcmp)
+--22093-- REDIR: 0x51c2070 (strcmp) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
+--22093-- REDIR: 0x527b200 (__strcmp_ssse3) redirected to 0x4c2f1b0 (strcmp)
+--22093-- REDIR: 0x4e96020 (operator new[](unsigned long)) redirected to 0x4c2b790 (operator new[](unsigned long))
+--22093-- REDIR: 0x4e94290 (operator delete[](void*)) redirected to 0x4c2c7d0 (operator delete[](void*))
+--22093-- REDIR: 0x51c3500 (strcpy) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
+--22093-- REDIR: 0x51d7b90 (__strcpy_sse2_unaligned) redirected to 0x4c2e1c0 (strcpy)
+==22093== Invalid write of size 1
+==22093==    at 0x4C2E1E0: strcpy (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22093==    by 0x4007F4: main (memoryLeaksExamples.cpp:13)
+==22093==  Address 0x5a1c0be is 0 bytes after a block of size 30 alloc'd
+==22093==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22093==    by 0x4007D6: main (memoryLeaksExamples.cpp:12)
+==22093== 
+==22093== Invalid write of size 1
+==22093==    at 0x4C2E1F3: strcpy (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22093==    by 0x4007F4: main (memoryLeaksExamples.cpp:13)
+==22093==  Address 0x5a1c0bf is 1 bytes after a block of size 30 alloc'd
+==22093==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22093==    by 0x4007D6: main (memoryLeaksExamples.cpp:12)
+==22093== 
+--22093-- REDIR: 0x51bddf0 (free) redirected to 0x4c2bd80 (free)
+==22093== 
+==22093== HEAP SUMMARY:
+==22093==     in use at exit: 0 bytes in 0 blocks
+==22093==   total heap usage: 2 allocs, 2 frees, 60 bytes allocated
+==22093== 
+==22093== All heap blocks were freed -- no leaks are possible
+==22093== 
+==22093== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
+==22093== 
+==22093== 1 errors in context 1 of 2:
+==22093== Invalid write of size 1
+==22093==    at 0x4C2E1F3: strcpy (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22093==    by 0x4007F4: main (memoryLeaksExamples.cpp:13)
+==22093==  Address 0x5a1c0bf is 1 bytes after a block of size 30 alloc'd
+==22093==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22093==    by 0x4007D6: main (memoryLeaksExamples.cpp:12)
+==22093== 
+==22093== 
+==22093== 1 errors in context 2 of 2:
+==22093== Invalid write of size 1
+==22093==    at 0x4C2E1E0: strcpy (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22093==    by 0x4007F4: main (memoryLeaksExamples.cpp:13)
+==22093==  Address 0x5a1c0be is 0 bytes after a block of size 30 alloc'd
+==22093==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22093==    by 0x4007D6: main (memoryLeaksExamples.cpp:12)
+==22093== 
+==22093== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
