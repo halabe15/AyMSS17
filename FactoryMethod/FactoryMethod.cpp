@@ -11,12 +11,10 @@ public:
 class Prod1 : public Product
 {
 public:
-    void SetUp()
-    {
+    void SetUp(){
         cout << "Construcción del objeto complejo" << endl;
     }
 };
-
 
 class FactoryMethod
 {
@@ -27,8 +25,7 @@ public:
 class ConcreteFactoryOO : public FactoryMethod
 {
 public:
-    Product* factoryMethod()
-    {
+    Product* factoryMethod(){
         return new Prod1;
     }
 };

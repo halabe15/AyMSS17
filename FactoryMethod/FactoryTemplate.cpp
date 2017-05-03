@@ -35,7 +35,5 @@ public:
 int main()
 {
     Product* miProducto1 = Product::factoryMethod<Prod1>();
-
     Product* miProducto2 = Product::factoryMethod<Prod2>();
-
 }
